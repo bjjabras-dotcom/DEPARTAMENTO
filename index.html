@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O ACESSO</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(ellipse at center, #21180e, #050505 70%);
+      color: #e8c58a;
+      font-family: Georgia, serif;
+      text-align: center;
+    }
+
+    .painel {
+      width: 100%;
+      max-width: 480px;
+      padding: 42px 26px;
+      border: 1px solid #89652e;
+      background: rgba(0, 0, 0, 0.72);
+      box-shadow: 0 0 35px #9c70251c;
+      animation: surgir 1.2s ease both;
+    }
+
+    .simbolo {
+      font-size: 54px;
+      color: #c49a50;
+      text-shadow: 0 0 20px #bd8b3b77;
+    }
+
+    h1 {
+      letter-spacing: 7px;
+      font-size: 30px;
+      font-weight: normal;
+    }
+
+    p {
+      color: #b8aa92;
+      line-height: 1.7;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    input {
+      background: #0b0b0b;
+      border: 1px solid #70552c;
+      color: #fff0d3;
+      text-align: center;
+      outline: none;
+    }
+
+    button {
+      background: #b68a43;
+      border: none;
+      color: #080604;
+      cursor: pointer;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    button:hover { background: #e2bd78; }
+
+    #mensagem { min-height: 24px; }
+
+    #liberado { display: none; }
+
+    a { color: #e8c58a; }
+
+    @keyframes surgir {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="painel">
+    <div class="simbolo">◉</div>
+    <h1>O ACESSO</h1>
+
+    <section id="entrada">
+      <p>
+        Nem todos chegam até aqui.<br>
+        Se você encontrou a chave, prove.
+      </p>
+
+      <form id="formulario">
+        <input
+          id="senha"
+          type="password"
+          placeholder="DIGITE A SENHA"
+          autocomplete="off"
+          required
+        >
+        <button type="submit">VERIFICAR</button>
+      </form>
+
+      <p id="mensagem" role="status"></p>
+    </section>
+
+    <section id="liberado">
+      <h2>ACESSO CONCEDIDO</h2>
+      <p>
+        Você ultrapassou a primeira barreira.
+        O próximo passo está à sua espera.
+      </p>
+      <a
+        href="https://instagram.com/enigma.premiado"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CONTINUAR PARA O INSTAGRAM
+      </a>
+    </section>
+  </main>
+
+  <script>
+    // Troque esta senha pela resposta final dos enigmas.
+    const senhaCorreta = o olho que tudo ve;
+
+    document.getElementById("formulario").addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+
+        const digitada = document.getElementById("senha").value.trim();
+
+        if (digitada === senhaCorreta) {
+          document.getElementById("entrada").style.display = "none";
+          document.getElementById("liberado").style.display = "block";
+        } else {
+          document.getElementById("mensagem").textContent =
+            "Acesso negado. A chave ainda não foi encontrada.";
+        }
+      }
+    );
+  </script>
+</body>
+</html>
